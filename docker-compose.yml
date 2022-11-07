@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  surreal:
+    hostname: surreal
+    container_name: surreal
+    image: surrealdb/surrealdb:latest
+    restart: always
+    command: start --user ${DB_USER} --pass ${DB_PASS} memory
+    env_file: &env
+      - .env
+    ports:
+      - "${DB_PORT:-8081}:8000"
